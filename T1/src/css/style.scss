@@ -1,5 +1,5 @@
 .dom-renderer {
-  $cell-size: 10px;
+  $cell-size: 16px;
 
   font-size: $cell-size;
   line-height: $cell-size;
@@ -35,7 +35,7 @@
 
       &.frontier { background-color: purple; }
       &.visited { background-color: darkgray; }
-      &.final { background-color: red; }
+      &.final { background-image: url('/img/link.png'); }
     }
   }
 }
