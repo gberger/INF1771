@@ -1,6 +1,8 @@
 class Map
-	constructor: (str) ->
-		[index, mapStr, doorsStr] = str.trim().split('\n---\n')
+	constructor: (str, terrainTypes) ->
+		@terrainTypes = terrainTypes
+
+		[index, mapStr, doorsStr, objectivesStr] = str.trim().split('\n---\n')
 
 		# Index of the map
 		@index = +index
@@ -19,6 +21,9 @@ class Map
 			doors
 		, []
 
+		# Array of objectives
+		@objectives = _.map objectivesStr.trim().split('\n'), (obj) -> obj.split(' ')
+
 	width: =>
 		@mapMatrix[0]?.length or 0
 
@@ -27,6 +32,12 @@ class Map
 
 	terrain: (x, y) =>
 		@mapMatrix[y][x]
+
+	cost: (x, y) =>
+		@terrainTypes[@terrain(x, y)]
+
+	valid: (x, y) =>
+		x >= 0 && y >= 0 && x < @width() && y < @height() && @cost(x, y) != Infinity
 
 	door: (x, y) =>
 		_.find @doors, (door) ->
@@ -37,27 +48,10 @@ class Map
 			door.to[2] == index
 
 	neighbors: (x, y) =>
-		neighbors = []
-		unless x == 0
-			neighbors.push [x-1, y, @index]
-		unless x == @width() - 1
-			neighbors.push [x+1, y, @index]
-		unless y == 0
-			neighbors.push [x, y-1, @index]
-		unless y == @width() - 1
-			neighbors.push [x, y+1, @index]
-		if !!@door(x, y)
-			neighbors.push @door(x, y).to
-		neighbors
+		neighbors = [[x-1, y, @index], [x+1, y, @index], [x, y-1, @index], [x, y+1, @index]]
 
-	mark: (x, y) =>
-		@markedMatrix[x][y] = true
-
-	isMarked: (x, y) =>
-		@markedMatrix[x][y]
-
-	clearMarks: =>
-		@markedMatrix = Matrix(@height(), @width(), false)
+		_.filter neighbors, (neighbor) =>
+			@valid(neighbor...)
 
 
 window.Map = Map

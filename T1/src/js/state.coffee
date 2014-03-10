@@ -12,7 +12,7 @@ class State
 
 		# Add previous state to the history
 		state.history = _.cloneDeep(previousState.history)
-		state.history.push(previousState.position)
+		state.history.push(position)
 
 		# If we're at the objective, we're done
 		state.finished = previousState.finished || _.isEqual(state.position, state.objective)
@@ -26,24 +26,23 @@ class State
 		@world = world
 		@position = _.clone(position)
 		@objective = objective
-		@history = []
+		@history = [position]
 		@cost = 0
 		@finished = false
-		@makeDistance()
 
-	makeDistance: =>
-		@distance = @world.distance(@position, @objective)
+	distance: =>
+		@world.distance(@position, @objective)
 
 	possibilities: =>
 		@world.neighbors(@position...)
 
 	heuristic: =>
 		# Underestimate the total cost to the objective.
-		@cost + (@world.cheapestTerrain * @distance)
+		@cost + (@world.cheapestTerrain * @distance())
 
 	toString: =>
 		"""
-		At position [#{@position}], with accumulated cost of #{@cost}. Distance to objective (#{@objective}): #{@distance}.
+		At position [#{@position}], with accumulated cost of #{@cost}. Distance to objective (#{@objective}): #{@distance()}.
 		History: #{JSON.stringify(@history)}."
 		"""
 

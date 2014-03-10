@@ -1,0 +1,41 @@
+.dom-renderer {
+  $cell-size: 10px;
+
+  font-size: $cell-size;
+  line-height: $cell-size;
+
+  .map {
+    margin: $cell-size * 2;
+    display: inline-block;
+  }
+
+  .row, .cell {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cell {
+    height: $cell-size;
+    width: $cell-size;
+    display: inline-block;
+
+    &.F { background-color: darkgreen; }
+    &.G { background-color: lightgreen; }
+    &.W { background-color: blue; }
+    &.M { background-color: brown; }
+    &.S { background-color: gold; }
+    &.L { background-color: lightgray; }
+    &.D { background-color: black; }
+    
+    .sub {
+      height: $cell-size;
+      width: $cell-size;
+      border-radius: $cell-size / 2;
+
+      &.frontier { background-color: purple; }
+      &.visited { background-color: darkgray; }
+      &.final { background-color: red; }
+    }
+  }
+}
