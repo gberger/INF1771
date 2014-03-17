@@ -3,11 +3,11 @@ class WorldMarker
 		@marks = _.map world.maps, (map) ->
 			Matrix(map.height(), map.width(), false)
 
-	mark: (x, y, index) =>
-		@marks[index][x][y] = true
+	mark: (pos) =>
+		@marks[pos.z][pos.y][pos.x] = true
 
-	isMarked: (x, y, index) =>
-		@marks[index][x][y]
+	isMarked: (pos) =>
+		@marks[pos.z][pos.y][pos.x]
 
 
 window.WorldMarker = WorldMarker

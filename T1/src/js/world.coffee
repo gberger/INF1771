@@ -5,11 +5,11 @@ class World
 		@cheapestTerrain = _.min(@terrainTypes)
 
 		# Delegate these functions to the appropriate map
-		'width height terrain door neighbors cost'.split(' ').forEach (fn) =>
-			@[fn] = do (fn) => (x, y, index) =>
+		'width height terrain neighbors cost'.split(' ').forEach (fn) =>
+			@[fn] = do (fn) => (pos) =>
 				# Throw if no such map
-				throw new Error("No map with such index: #{index}.") unless index+'' in _.keys(@maps)
-				@maps[index][fn](+x, +y)
+				throw new Error("No map with such z: #{pos.z}.") unless !!@maps[pos.z]
+				@maps[pos.z][fn](pos)
 
 	addMap: (map) =>
 		@maps[map.index] = map
@@ -25,10 +25,8 @@ class World
 		, []
 
 	distance: (from, to) =>
-		[x1, y1, z1] = from
-		[x2, y2, z2] = to
-		throw new Error("Can't calculate distance with different indexes") if z1 != z2
-		return Math.abs(x1 - x2) + Math.abs(y1 - y2)
+		throw new Error("Can't calculate distance with different indexes") if from.z != to.z
+		return Math.abs(from.x - to.x) + Math.abs(from.y - to.y)
 
 
 window.World = World

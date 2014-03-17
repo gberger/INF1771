@@ -2,13 +2,13 @@ class State
 	@fromState = (previousState, position) ->
 		# Throw if the new position is not a neighbor of the previous one
 		do ->
-			neighbors = previousState.world.neighbors(previousState.position...)
+			neighbors = previousState.world.neighbors(previousState.position)
 			for neighbor in neighbors
 				if _.isEqual(neighbor, position)
 					return true
 			throw new Error("New position is invalid! Valid neighbors are: #{JSON.stringify(neighbors)}.")
 
-		state = new this(previousState.world, position, previousState.objective, previousState.cost)
+		state = new this(previousState.world, position, previousState.objective)
 
 		# Add previous state to the history
 		state.history = _.cloneDeep(previousState.history)
@@ -18,7 +18,7 @@ class State
 		state.finished = previousState.finished || _.isEqual(state.position, state.objective)
 
 		# Update cost using terrain
-		state.cost = previousState.cost + state.world.cost(position...)
+		state.cost = previousState.cost + state.world.cost(position)
 
 		state
 
@@ -34,7 +34,7 @@ class State
 		@world.distance(@position, @objective)
 
 	possibilities: =>
-		@world.neighbors(@position...)
+		@world.neighbors(@position)
 
 	heuristic: =>
 		# Underestimate the total cost to the objective.
@@ -42,7 +42,7 @@ class State
 
 	toString: =>
 		"""
-		At position [#{@position}], with accumulated cost of #{@cost}. Distance to objective (#{@objective}): #{@distance()}.
+		At position #{JSON.stringify(@position)}, with accumulated cost of #{@cost}. Distance to objective (#{JSON.stringify(@objective)}): #{@distance()}.
 		History: #{JSON.stringify(@history)}."
 		"""
 
