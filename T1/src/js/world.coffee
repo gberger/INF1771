@@ -11,18 +11,8 @@ class World
 				throw new Error("No map with such z: #{pos.z}.") unless !!@maps[pos.z]
 				@maps[pos.z][fn](pos)
 
-	addMap: (map) =>
-		@maps[map.index] = map
-
-	doors: =>
-		_.reduce @maps, (doors, map) ->
-			doors.concat(map.doors)
-		, []
-
-	objectives: =>
-		_.reduce @maps, (objectives, map) ->
-			objectives.concat(map.objectives)
-		, []
+	addMap: (mapStr, z) =>
+		@maps[z] = new Map(mapStr, @)
 
 	distance: (from, to) =>
 		throw new Error("Can't calculate distance with different indexes") if from.z != to.z

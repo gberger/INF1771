@@ -4,16 +4,11 @@ positionFromArray = (arr) ->
 	z: arr[2]
 
 class Map
-	constructor: (str, terrainTypes) ->
-		@terrainTypes = terrainTypes
-
-		[index, mapStr] = str.trim().split('\n---\n')
-
-		# Index of the map
-		@index = +index
-
+	constructor: (map, world) ->
 		# Matrix representing the map
-		@mapMatrix = CharMatrix(mapStr)
+		@mapMatrix = CharMatrix(map)
+
+		@world = world
 
 	width: =>
 		@mapMatrix[0]?.length or 0
@@ -25,17 +20,17 @@ class Map
 		@mapMatrix[pos.y][pos.x]
 
 	cost: (pos) =>
-		@terrainTypes[@terrain(pos)]
+		@world.terrainTypes[@terrain(pos)]
 
 	valid: (pos) =>
 		pos.x >= 0 && pos.y >= 0 && pos.x < @width() && pos.y < @height() && @cost(pos) != Infinity
 
 	neighbors: (pos) =>
 		neighbors = [
-			{x: pos.x - 1, y: pos.y, z: @index}
-			{x: pos.x + 1, y: pos.y, z: @index}
-			{x: pos.x, y: pos.y - 1, z: @index}
-			{x: pos.x, y: pos.y + 1, z: @index}
+			{x: pos.x - 1, y: pos.y, z: pos.z}
+			{x: pos.x + 1, y: pos.y, z: pos.z}
+			{x: pos.x, y: pos.y - 1, z: pos.z}
+			{x: pos.x, y: pos.y + 1, z: pos.z}
 		]
 
 		_.filter neighbors, (neighbor) =>

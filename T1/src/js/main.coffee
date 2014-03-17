@@ -9,24 +9,15 @@ terrainTypes =
 
 world = new World(terrainTypes)
 
-window.terrainTypes = terrainTypes
-window.world = world
-
-Renderer = DOMRenderer
-
-maps = 'map dun1 dun2 dun3'.split(' ')
-promises = _.map maps, (map) ->
-	$.ajax("/data/#{map}.txt").success (data) ->
-		world.addMap(new Map(data, terrainTypes))
-promises.push $.getJSON("/data/data.json").success (data) ->
+$.getJSON("/data/data.json").success (data) ->
 	world.paths = new Paths(data)
 	world.icons = data.icons
+	for map, i in data.maps
+		world.addMap(map.join('\n'), i)
+	main()
 
-$.when(promises...).then ->
-	$(window).trigger('app.ready')
-
-$(window).on 'app.ready', ->
-	window.renderer = new Renderer($('div'), world)
+main = ->
+	window.renderer = new DOMRenderer($('div'), world)
 
 	console.time('all')
 	_.each world.paths.components, (component) ->
