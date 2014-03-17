@@ -1,8 +1,3 @@
-positionFromArray = (arr) ->
-	x: arr[0]
-	y: arr[1]
-	z: arr[2]
-
 class Map
 	constructor: (map, world) ->
 		# Matrix representing the map
