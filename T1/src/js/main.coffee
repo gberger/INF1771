@@ -30,12 +30,11 @@ $(window).on 'app.ready', ->
 
 	console.time('all')
 	_.each world.paths.components, (component) ->
-		name = "#{JSON.stringify component.from} -> #{JSON.stringify component.to}"
-		console.time(name)
+		console.time(component.name)
 
 		_.extend component, heuristicSearch(world, component.from, component.to)
 
-		console.timeEnd(name)
+		console.timeEnd(component.name)
 	console.timeEnd('all')
 
 #	_.reduce world.paths.components, (baseDelay, component) ->

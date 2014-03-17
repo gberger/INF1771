@@ -30,15 +30,15 @@ class Paths
 						(_.isEqual(component.from, prev) && _.isEqual(component.to, curr)) ||
 						(_.isEqual(component.from, curr) && _.isEqual(component.to, prev))
 					unless any
-						@components.push from: prev, to: curr
-		@components = _.uniq @components, (component) ->
-			JSON.stringify(component.from) + JSON.stringify(component.to)
+						@components.push from: prev, to: curr, name: "#{JSON.stringify(prev)} -> #{JSON.stringify(curr)}"
+		@components = _.uniq @components, 'name'
 
 	buildReverseComponents: =>
 		@components = @components.concat _.map @components, (component) ->
 			newComponent =
 				from: component.to
 				to: component.from
+				name: "#{JSON.stringify(component.to)} -> #{JSON.stringify(component.from)}"
 				searchLog: []
 				cost: component.cost
 				pathFound: _.clone(component.pathFound)
