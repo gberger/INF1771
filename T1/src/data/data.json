@@ -23,6 +23,15 @@
     ["start", "dungeon3", "dungeon1", "dungeon2", "sword"],
     ["start", "dungeon3", "dungeon2", "dungeon1", "sword"]
   ],
+  "terrainTypes" : {
+    "F": 100,
+    "G": 10,
+    "S": 20,
+    "M": 150,
+    "W": 180,
+    "D": null,
+    "L": 10
+  },
   "maps": [
     [
       "FFFFFFFFFFFFFFFMMMMMMMMMMMMMMMMMMMMMMMMMMM",

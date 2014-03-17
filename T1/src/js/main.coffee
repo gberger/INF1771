@@ -1,22 +1,12 @@
-terrainTypes =
-	F: 100
-	G: 10
-	S: 20
-	M: 150
-	W: 180
-	D: Infinity
-	L: 10
-
-world = new World(terrainTypes)
-
 $.getJSON("/data/data.json").success (data) ->
+	world = new World(data.terrainTypes)
 	world.paths = new Paths(data)
 	world.icons = data.icons
 	for map, i in data.maps
 		world.addMap(map.join('\n'), i)
-	main()
+	main(world)
 
-main = ->
+main = (world) ->
 	window.renderer = new DOMRenderer($('div'), world)
 
 	console.time('all')

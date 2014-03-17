@@ -23,7 +23,7 @@ class Map
 		@world.terrainTypes[@terrain(pos)]
 
 	valid: (pos) =>
-		pos.x >= 0 && pos.y >= 0 && pos.x < @width() && pos.y < @height() && @cost(pos) != Infinity
+		pos.x >= 0 && pos.y >= 0 && pos.x < @width() && pos.y < @height() && @cost(pos) != null
 
 	neighbors: (pos) =>
 		neighbors = [
