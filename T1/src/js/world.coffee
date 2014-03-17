@@ -2,6 +2,10 @@ class World
 	constructor: (@terrainTypes) ->
 		@maps = {}
 
+		for k, v of @terrainTypes
+			if v == null
+				@terrainTypes[k] = Infinity
+
 		@cheapestTerrain = _.min(@terrainTypes)
 
 		# Delegate these functions to the appropriate map
