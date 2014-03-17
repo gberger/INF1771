@@ -10,7 +10,7 @@
     "door03": [{"x": 24, "y": 1,  "z": 0}],
     "obj3":   [{"x": 15, "y": 19, "z": 3}],
     "door30": [{"x": 14, "y": 25, "z": 3}],
-    "sword":  [{"x": 2,  "y": 1,  "z": 0}],
+    "sword":  [{"x": 6,  "y": 5,  "z": 0}],
     "dungeon1": ["door01", "door10", "obj1", "door10", "door01"],
     "dungeon2": ["door02", "door20", "obj2", "door20", "door02"],
     "dungeon3": ["door03", "door30", "obj3", "door30", "door03"]
