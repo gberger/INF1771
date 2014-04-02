@@ -176,6 +176,6 @@
     {"type": "star", "position": {"x": 13, "y": 3,  "z": 1}},
     {"type": "star", "position": {"x": 13, "y": 2,  "z": 2}},
     {"type": "star", "position": {"x": 15, "y": 19, "z": 3}},
-    {"type": "star", "position": {"x": 2,  "y": 1,  "z": 0}}
+    {"type": "star", "position": {"x": 6,  "y": 5,  "z": 0}}
   ]
 }
