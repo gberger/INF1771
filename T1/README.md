@@ -3,11 +3,12 @@ Project 1 - Heuristic Search
 
 * [Enunciado](ENUNCIADO.pdf)
 
-See it in action
------------
 
-    npm install -g harp
-    harp server src
+Open
+----
+
+Open `build/index.html` to see it in action.
+
 
 Project structure
 -----------------
@@ -36,3 +37,17 @@ Project structure
     * `heap` is an efficient implementation of a Heap.
     * `font-awesome` has some pretty icons.
  * `index.html` visit this to see the action!
+
+
+Developing
+-----------
+
+    npm install -g harp
+    harp server src
+
+
+Building
+--------
+
+    gulp dist
+

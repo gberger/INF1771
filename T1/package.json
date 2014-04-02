@@ -1,0 +1,15 @@
+{
+  "name": "INF1771-T1",
+  "version": "0.1.0",
+  "author": "Guilherme Berger <guilherme.berger@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-rename": "^1.2.0",
+    "coffee-script": "^1.7.1",
+    "gulp-clean": "^0.2.4",
+    "gulp-coffee": "^1.4.1",
+    "gulp": "^3.6.0",
+    "gulp-sass": "^0.7.1",
+    "gulp-util": "^2.2.14"
+  }
+}
