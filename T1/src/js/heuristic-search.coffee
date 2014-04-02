@@ -1,4 +1,4 @@
-heuristicSearch = (world, start, end) ->
+window.heuristicSearch = (world, start, end) ->
 
 	# Automatic ordered
 	states = new Heap (a, b) -> a.heuristic() - b.heuristic()

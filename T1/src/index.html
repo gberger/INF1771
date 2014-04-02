@@ -1,32 +1,46 @@
-<link rel="stylesheet" href="lib/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/style.css"/>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>INF1771 - Trabalho 1</title>
 
-<div class="loading">
-  <div id="stats">
-    <div class="exec-time">Tempo de execução: <span></span></div>
-    <div class="cost">Custo: <span></span></div>
-    <button onclick="renderer.showSearch()">Mostrar busca</button>
-    <button onclick="renderer.showSolution()">Mostrar solução</button>
+  <link rel="stylesheet" href="lib/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css"/>  
+</head>
+<body>
+
+  <div class="loading">
+    <div id="stats">
+      <div class="exec-time">Tempo de execução: <span></span></div>
+      <div class="cost">Custo: <span></span></div>
+      <button onclick="renderer.showSearch()">Mostrar busca</button>
+      <button onclick="renderer.showSolution()">Mostrar solução</button>
+    </div>
+    <div id="maps"></div>
   </div>
-  <div id="maps"></div>
-</div>
 
 
-<script src="lib/js/jquery.min.js"></script>
-<script src="lib/js/lodash.min.js"></script>
-<script src="lib/js/heap.min.js"></script>
+  <script src="lib/js/jquery.min.js"></script>
+  <script src="lib/js/lodash.min.js"></script>
+  <script src="lib/js/heap.min.js"></script>
 
-<script src="js/delayed-each.js"></script>
-<script src="js/timer.js"></script>
+  <script src="js/delayed-each.js"></script>
+  <script src="js/timer.js"></script>
 
-<script src="js/matrix.js"></script>
-<script src="js/char-matrix.js"></script>
-<script src="js/map.js"></script>
-<script src="js/world.js"></script>
-<script src="js/paths.js"></script>
-<script src="js/world-marker.js"></script>
-<script src="js/state.js"></script>
-<script src="js/heuristic-search.js"></script>
-<script src="js/dom-renderer.js"></script>
+  <script src="js/data.js"></script>
 
-<script src="js/main.js"></script>
+  <script src="js/matrix.js"></script>
+  <script src="js/char-matrix.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/paths.js"></script>
+  <script src="js/world-marker.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/heuristic-search.js"></script>
+  <script src="js/dom-renderer.js"></script>
+
+  <script src="js/main.js"></script>
+  
+</body>
+</html>
+

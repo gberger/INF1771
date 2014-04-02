@@ -1,10 +1,13 @@
-$.getJSON("/data/data.json").success (data) ->
-	world = new World(data.terrainTypes)
-	world.paths = new Paths(data)
-	world.icons = data.icons
-	for map, i in data.maps
-		world.addMap(map.join('\n'), i)
-	main(world)
+$ ->
+	if window.data
+		world = new World(data.terrainTypes)
+		world.paths = new Paths(data)
+		world.icons = data.icons
+		for map, i in data.maps
+			world.addMap(map.join('\n'), i)
+		main(world)
+	else
+		alert('erro!')
 
 main = (world) ->
 	time('all')

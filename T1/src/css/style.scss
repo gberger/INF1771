@@ -33,7 +33,8 @@ body {
     .sub {
       &.frontier { background-color: purple; }
       &.visited { background-color: darkgray; }
-      &.final { background-image: url('/img/link.png'); }
+      /* TODO scale link image */
+      &.final { background-image: url('../img/link.png'); }
     }
   }
 

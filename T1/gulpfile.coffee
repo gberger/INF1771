@@ -10,18 +10,17 @@ gulp.task 'clean', ->
 		.pipe clean()
 
 gulp.task 'copy', ->
-	for glob in ['./src/*.html', './src/lib/*', './src/img/*', './src/data']
-		gulp.src glob
-			.pipe gulp.dest './build/'
+	gulp.src './src/**/*'
+		.pipe gulp.dest './build'
 
 gulp.task 'coffee', ->
-	gulp.src './src/js/*'
+	gulp.src './src/js/*.coffee'
 		.pipe coffee().on('error', gutil.log)
 		.pipe rename extname: '.js'
 		.pipe gulp.dest './build/js/'
 
 gulp.task 'sass', ->
-	gulp.src './src/css/*'
+	gulp.src './src/css/*.scss'
 		.pipe sass().on('error', gutil.log)
 		.pipe rename extname: '.css'
 		.pipe gulp.dest './build/css/'
