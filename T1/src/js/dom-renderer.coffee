@@ -7,20 +7,28 @@ class DOMRenderer
 		@build()
 
 	build: =>
-		@element.addClass('dom-renderer')
 		maps = _.map @world.maps, (m) -> m.mapMatrix
 		_.each maps, (map, z) =>
-			table = $('<div class="map"></div>')
+			table = $("<div class='map map-#{z}'></div>")
 			_.each map, (row, y) ->
-				tr = $('<div class="row"></div>')
+				tr = $("<div class='row row-#{y}'></div>")
 				_.each row, (cell, x) ->
 					td = $("<div class='cell #{cell}' id='pos-#{x}-#{y}-#{z}'><div class='sub'>&nbsp;</div></div>")
 					tr.append(td)
 				table.append(tr)
-			@element.append(table)
+			@element.find('#maps').append(table)
 		_.each @world.icons, (icon) =>
 			type = {"star": "star", "door": "reply"}[icon.type]
 			@getSub(icon.position).html("<i class='fa fa-#{type}'></i>")
+
+		@element.removeClass('loading')
+
+	setExecTime: (execTime) =>
+		@element.find('.exec-time span').text("#{execTime}ms")
+
+	setSolution: (solution) =>
+		@solution = solution
+		@element.find('.cost span').text(solution.cost)
 
 	get: (pos) =>
 		$("\#pos-#{pos.x}-#{pos.y}-#{pos.z}")
@@ -48,6 +56,14 @@ class DOMRenderer
 			@clear()
 			@getSub(coords).removeClass(@allClasses).addClass('final')
 		return unitDelay * path.length
+
+	showSearch: =>
+		_.reduce @world.paths.components, (baseDelay, component) =>
+			return baseDelay + @renderSearch(component, baseDelay)
+		, 0
+
+	showSolution: =>
+		@renderMovement(@solution.pathFound, 0, 100)
 
 
 window.DOMRenderer = DOMRenderer

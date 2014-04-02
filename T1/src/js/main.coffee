@@ -7,20 +7,17 @@ $.getJSON("/data/data.json").success (data) ->
 	main(world)
 
 main = (world) ->
-	window.renderer = new DOMRenderer($('div'), world)
-
-	console.time('all')
+	time('all')
 	_.each world.paths.components, (component) ->
-		console.time(component.name)
+		time(component.name)
 
 		_.extend component, heuristicSearch(world, component.from, component.to)
 
-		console.timeEnd(component.name)
-	console.timeEnd('all')
+		component.time = timeEnd(component.name)
+	timeAll = timeEnd('all')
 
-#	_.reduce world.paths.components, (baseDelay, component) ->
-#		return baseDelay + renderer.renderSearch(component, baseDelay)
-#	, 0
+	window.renderer = new DOMRenderer($('div'), world)
+	window.renderer.setExecTime(timeAll)
 
 	world.paths.buildReverseComponents()
 
@@ -35,4 +32,6 @@ main = (world) ->
 				possibleSolution.pathFound = possibleSolution.pathFound.concat _.cloneDeep(component.pathFound)
 		possibleSolution
 
+
 	window.solution = _.min possibleSolutions, 'cost'
+	window.renderer.setSolution(solution)

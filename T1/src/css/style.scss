@@ -1,13 +1,19 @@
-.dom-renderer {
+.loading {
+  display: none;
+}
+
+#stats {
+
+}
+
+.map-0 {
   $cell-size: 16px;
 
   font-size: $cell-size;
   line-height: $cell-size;
 
-  .map {
-    margin: $cell-size * 2;
-    display: inline-block;
-  }
+  display: inline-block;
+  float: left;
 
   .row, .cell {
     border: 0;
@@ -28,6 +34,47 @@
     &.L { background-color: lightgray; }
     &.D { background-color: black; }
     
+    .sub {
+      height: $cell-size;
+      width: $cell-size;
+      border-radius: $cell-size / 2;
+
+      &.frontier { background-color: purple; }
+      &.visited { background-color: darkgray; }
+      &.final { background-image: url('/img/link.png'); }
+    }
+  }
+}
+
+
+.map-1, .map-2, .map-3 {
+  $cell-size: 12px;
+
+  font-size: $cell-size;
+  line-height: $cell-size;
+
+  display: inline-block;
+  float: right;
+
+  .row, .cell {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cell {
+    height: $cell-size;
+    width: $cell-size;
+    display: inline-block;
+
+    &.F { background-color: darkgreen; }
+    &.G { background-color: lightgreen; }
+    &.W { background-color: blue; }
+    &.M { background-color: brown; }
+    &.S { background-color: gold; }
+    &.L { background-color: lightgray; }
+    &.D { background-color: black; }
+
     .sub {
       height: $cell-size;
       width: $cell-size;
