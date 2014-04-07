@@ -49,5 +49,5 @@ Developing
 Building
 --------
 
+    npm i
     gulp dist
-
