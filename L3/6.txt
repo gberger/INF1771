@@ -1,0 +1,23 @@
+A)
+Suceder.
+A = 1.
+B = 2.
+
+B)
+Falhar.
+
+C)
+Falhar.
+
+D)
+Falhar.
+
+E)
+Suceder.
+D = E, E = 2.
+
+F)
+Suceder.
+P1 = p(-1, 0)
+P2 = p(1, 0)
+P3 = p(0, Y)
