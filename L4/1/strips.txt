@@ -1,0 +1,13 @@
+Início( Clear(B) ^ On(B, A) ^ On(A, C) ^ Clear(D) )
+
+Objetivo( Clear(C) ^ On(C, B) ^ On(B, A) ^ On(A, D) )
+
+Ação( put-on(x, y)
+      Pré-condição: Clear(y)
+      Efeito: ¬Clear(y) ^ On(x, y)
+    )
+
+Ação( put-table(x) 
+      Pré-condição: Clear(x)
+      Efeito: ¬On(x, Y) ^ Clear(Y)
+    )

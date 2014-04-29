@@ -1,0 +1,62 @@
+# At(o, p): objeto o está na posição p
+# In(p, r): posição p fica no quarto r
+# Top(Shakey, o): Shakey está em cima do objeto o
+# On(s): interruptor s está ligado
+
+Início( 
+  ## Quartos
+    Room(Room1) ^ Room(Room2) ^ Room(Room3) ^ Room(Room4) ^ Room(Corridor) ^ 
+
+  ## Interruptores
+    Switch(Switch1) ^ Switch(Switch2) ^ Switch(Switch3) ^ Switch(Switch4) ^ 
+    At(Switch1, PosRoom1) ^ At(Switch2, PosRoom2) ^ At(Switch3, PosRoom3) ^ At(Switch4, PosRoom4) ^
+    On(Switch1) ^ ¬On(Switch2) ^ ¬On(Switch3) ^ On(Switch4) ^
+
+  ## Caixas
+    Box(Box1) ^ Box(Box2) ^ Box(Box3) ^ Box(Box4) ^ 
+    At(Box1, PosRoom1) ^ At(Box2, PosRoom1) ^ At(Box3, PosRoom1) ^ At(Box4, PosRoom1) ^ 
+
+  ## Posições
+    Pos(PosRoom1) ^ Pos(PosRoom2) ^ Pos(PosRoom3) ^ Pos(PosRoom4) ^ Pos(PosCorridor)
+    Pos(Door1) ^ Pos(Door2) ^ Pos(Door3) ^ Pos(Door4) ^
+
+  ## Posições + Quartos
+    In(PosRoom1, Room1) ^ In(PosRoom2, Room2) ^ In(PosRoom3, Room3) ^ In(PosRoom4, Room4) ^ In(PosCorridor, Corridor)
+    In(Door1, Room1) ^ In(Door2, Room2) ^ In(Door3, Room3) ^ In(Door4, Room4) ^
+    In(Door1, Corridor) ^ In(Door2, Corridor) ^ In(Door3, Corridor) ^ In(Door4, Corridor) ^
+
+  ## Shakey
+    At(Shakey, PosRoom3) ^ Ground(Shakey) ^
+    ¬Top(Shakey, Box1) ^ ¬Top(Shakey, Box2) ^ ¬Top(Shakey, Box3) ^ ¬Top(Shakey, Box4)
+
+    )
+
+Ação( Ir(x, y) 
+      Pré-condição: Pos(x) ^ Pos(y) ^ In(x, r) ^ In(y, r) ^ Ground(Shakey) ^ At(Shakey, x)
+      Efeito: ¬At(Shakey, x) ^ At(Shakey, y)
+    )
+
+Ação( Empurrar(b, x, y)
+      Pré-condição: Box(b) ^ Pos(x) ^ Pos(y) ^ In(x, r) ^ In(y, r) ^ At(Shakey, x) ^ At(b, x) ^ Ground(Shakey)
+      Efeito: ¬At(Shakey, x) ^ At(Shakey, y) ^ ¬At(b, x) ^ At(b, y)
+    )
+
+Ação( Subir(b) 
+      Pré-condição: Box(b) ^ At(b, p) ^ At(Shakey, p) ^ Ground(Shakey)
+      Efeito: ¬Ground(Shakey) ^ Top(Shakey, b)
+    )
+
+Ação( Descer(b)
+      Pré-condição: Box(p) ^ Top(Shakey, b) ^ ¬Ground(Shakey)
+      Efeito: Ground(Shakey) ^ ¬Top(Shakey, b)
+    )
+
+Ação( LigarLuz(s)
+      Pré-condição: Switch(s) ^ ¬On(s) ^ Top(Shakey, b) ^ At(b, p) ^ At(s, p)
+      Efeito: On(s)
+    )
+
+Ação( DesligarLuz(s)
+      Pré-condição: Switch(s) ^ On(s) ^ Top(Shakey, b) ^ At(b, p) ^ At(s, p)
+      Efeito: ¬On(s)
+    )
