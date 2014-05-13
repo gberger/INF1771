@@ -1,6 +1,7 @@
-# AI-2
+Project 2 - Prolog Decision-Based Game 
+======================================
 
-Second project of Artificial Intelligence class @ PUC-Rio
+* [Enunciado](ENUNCIADO.pdf)
 
 
 ## Instructions
