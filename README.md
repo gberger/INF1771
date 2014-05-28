@@ -13,3 +13,8 @@ We solved a heuristic search problem, finding the shortest path from the startin
 ## Project 2
 
 We solved a partially observable problem using Prolog. The program made the best decisions based on the observable information, and a supporting Python script acted as the game engine, giving information to the logic agent.
+
+
+## Project 3
+
+We developed a hand gesture recognition system. It uses frames extracted from videos to train a machine learning algorithm. 
