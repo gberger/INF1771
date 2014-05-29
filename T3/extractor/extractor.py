@@ -40,10 +40,10 @@ def extract_features(image):
   huMoments = cv2.HuMoments(moments)
 
   # Features
-  
   features['area'] = cv2.contourArea(contour)
   features['perimeter'] = cv2.arcLength(contour, True)
   features['convex_hull_area'] = cv2.contourArea(hull)
+  features['solidity'] = features['area']/features['convex_hull_area']
   features['rect_center_x'] = rect[0][0]
   features['rect_center_y'] = rect[0][1]
   features['rect_width']  = rect[1][0]
