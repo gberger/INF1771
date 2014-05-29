@@ -66,7 +66,33 @@ def extract_features(image):
 
   return features
 
+def extract(filename):
+  img = imread_bw(filename)
+  img = morph(img)
+  return extract_features(img)
 
-i = imread_bw("frame-0039.jpg")
-i = morph(i)
-extract_features(i)
+feature_names = sorted([
+  'area',
+  'perimeter',
+  'convex_hull_area',
+  'solidity',
+  'rect_center_x',
+  'rect_center_y',
+  'rect_width',
+  'rect_height',
+  'rect_angle',
+  'rect_aspect_ratio',
+  'ellipse_center_x',
+  'ellipse_center_y',
+  'ellipse_major_axis',
+  'ellipse_minor_axis',
+  'ellipse_angle',
+  'farthest_convex_defect',
+  'hu_moment_1',
+  'hu_moment_2',
+  'hu_moment_3',
+  'hu_moment_4',
+  'hu_moment_5',
+  'hu_moment_6',
+  'hu_moment_7'
+])
