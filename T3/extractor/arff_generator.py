@@ -19,7 +19,7 @@ classes = {
 feature_names = extractor.feature_names
 
 # CONFIGURE THIS -- MUST BE 2 OR MORE
-frames_per_example = 2
+frames_per_example = 5
 
 # ARFF HEADER
 print "@RELATION hand"
@@ -56,6 +56,6 @@ def process_examples_folder(examples_folder):
       sys.stdout.write('%s\n' % class_num)    
 
 
-for n in range(1, 6):
+for n in range(4, 5):
   folder = os.path.join(script_dir, '../examples/Set%d/' % n)
   process_examples_folder(folder)
