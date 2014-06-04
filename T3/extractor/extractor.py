@@ -2,14 +2,20 @@ import os
 from operator import itemgetter
 import cv2
 import cv2.cv
+import numpy as np
+
+lower = np.array([0, 30, 60])
+upper = np.array([50, 150, 255])
 
 def imread_bw(filename):
-  """Takes a filename for an image, loads it and turns into BW"""
+  """Takes a filename for an image, loads it and turns into BW
+
+  Uses HSV segmentation to capture skin color, but not light"""
   if not os.path.isfile(filename):
     raise ValueError("%s is not a file!" % filename)
   img = cv2.imread(filename)
-  img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-  img_bw = cv2.threshold(img_gray, 180, 255, cv2.THRESH_BINARY)[1]
+  img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+  img_bw = cv2.inRange(img_hsv, lower, upper)
 
   return img_bw
 

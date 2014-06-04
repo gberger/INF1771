@@ -2,6 +2,10 @@ import sys
 import os
 import extractor
 
+# INITIALIZATION
+frames_per_example = int(sys.argv[1])
+sets_used = [int(i) for i in sys.argv[2:]]
+
 script_dir = os.path.dirname(__file__)
 
 classes = {
@@ -19,7 +23,6 @@ classes = {
 feature_names = extractor.feature_names
 
 # CONFIGURE THIS -- MUST BE 2 OR MORE
-frames_per_example = 5
 
 # ARFF HEADER
 print "@RELATION hand"
@@ -56,6 +59,9 @@ def process_examples_folder(examples_folder):
       sys.stdout.write('%s\n' % class_num)    
 
 
-for n in range(4, 5):
+for n in sets_used:
   folder = os.path.join(script_dir, '../examples/Set%d/' % n)
+  print
+  print "%% SET %d" % n
+  print 
   process_examples_folder(folder)
