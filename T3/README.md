@@ -219,3 +219,25 @@ Relative absolute error                 18.3595 %
 Root relative squared error             51.0225 %
 Total Number of Instances              900    
 ```
+
+
+## Maximizing
+
+Now that we know that, for this case, using a NN works best, we're going
+to try to achieve the highest possible correct classification rate.
+
+For this, we'll use only the 1st set, extracting 10 frames from each example.
+
+#### Results
+
+```
+Time taken to build model: 89.95 seconds
+Correctly Classified Instances         173               96.1111 %
+Incorrectly Classified Instances         7                3.8889 %
+Kappa statistic                          0.9563
+Mean absolute error                      0.014 
+Root mean squared error                  0.0845
+Relative absolute error                  7.074  %
+Root relative squared error             26.8859 %
+Total Number of Instances              180     
+```
