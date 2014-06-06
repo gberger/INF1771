@@ -183,16 +183,17 @@ Total Number of Instances              900
 #### Results
 
 ```
-Time taken to build model: 1.75 seconds
-Correctly Classified Instances         780               86.6667 %
-Incorrectly Classified Instances       120               13.3333 %
-Kappa statistic                          0.85  
-Mean absolute error                      0.0296
-Root mean squared error                  0.1721
-Relative absolute error                 15      %
-Root relative squared error             54.7723 %
+Time taken to build model: 22.3 seconds
+Correctly Classified Instances         771               85.6667 %
+Incorrectly Classified Instances       129               14.3333 %
+Kappa statistic                          0.8388
+Mean absolute error                      0.0363
+Root mean squared error                  0.1603
+Relative absolute error                 18.3595 %
+Root relative squared error             51.0225 %
 Total Number of Instances              900    
 ```
+
 
 ### Neural Network (functions/MultilayerPerceptron)
 
@@ -209,14 +210,14 @@ Total Number of Instances              900
 #### Results
 
 ```
-Time taken to build model: 22.3 seconds
-Correctly Classified Instances         771               85.6667 %
-Incorrectly Classified Instances       129               14.3333 %
-Kappa statistic                          0.8388
-Mean absolute error                      0.0363
-Root mean squared error                  0.1603
-Relative absolute error                 18.3595 %
-Root relative squared error             51.0225 %
+Time taken to build model: 1.75 seconds
+Correctly Classified Instances         780               86.6667 %
+Incorrectly Classified Instances       120               13.3333 %
+Kappa statistic                          0.85  
+Mean absolute error                      0.0296
+Root mean squared error                  0.1721
+Relative absolute error                 15      %
+Root relative squared error             54.7723 %
 Total Number of Instances              900    
 ```
 
@@ -241,3 +242,43 @@ Relative absolute error                  7.074  %
 Root relative squared error             26.8859 %
 Total Number of Instances              180     
 ```
+
+
+## Implementing
+
+We implemented a Neural Network algorithm with backpropagation in Ruby.
+
+It can be used like this:
+
+```
+require './nn'
+
+xor = [        
+  [[0,0], [0]],
+  [[0,1], [1]],
+  [[1,0], [1]],
+  [[1,1], [0]]
+]
+
+# input, hidden, output
+n = NeuralNetwork.new(2, 2, 1)
+
+puts "Training..."
+n.train(xor)
+
+puts "Evaluating..."
+correct = n.test(xor)
+
+puts "Got #{correct}/#{xor.length} -> #{100.0*correct/xor.length}%"
+```
+
+There's also a script that can take an ARFF file and pass it through the Neural Network.
+
+```
+$ ruby arff_nn.rb ../examples/Set1.arff
+Training...
+Evaluating...
+Got 162/180 -> 90%
+```
+
+(This takes a long time! Our implementation is not that sophisticated)
