@@ -71,6 +71,24 @@ class NeuralNetwork
     correct
   end
 
+  def internal
+    puts "Input Activation:"
+    puts @ai
+    puts
+    puts "Hidden Layer Activation:"
+    puts @ah
+    puts
+    puts "Output Activation:"
+    puts @ao
+    puts
+    puts "Input Weights:"
+    puts @wi
+    puts
+    puts "Output Weights:"
+    puts @wo
+    puts
+  end
+
 private
 
   def run(inputs)

@@ -183,7 +183,7 @@ Total Number of Instances              900
 #### Results
 
 ```
-Time taken to build model: 22.3 seconds
+Time taken to build model: 1.75 seconds
 Correctly Classified Instances         771               85.6667 %
 Incorrectly Classified Instances       129               14.3333 %
 Kappa statistic                          0.8388
@@ -210,7 +210,7 @@ Total Number of Instances              900
 #### Results
 
 ```
-Time taken to build model: 1.75 seconds
+Time taken to build model: 22.3 seconds
 Correctly Classified Instances         780               86.6667 %
 Incorrectly Classified Instances       120               13.3333 %
 Kappa statistic                          0.85  
@@ -275,7 +275,7 @@ puts "Got #{correct}/#{xor.length} -> #{100.0*correct/xor.length}%"
 There's also a script that can take an ARFF file and pass it through the Neural Network.
 
 ```
-$ ruby arff_nn.rb ../examples/Set1.arff
+$ ruby arff_nn.rb ../examples/Set1-2frames.arff
 Training...
 Evaluating...
 Got 162/180 -> 90%
