@@ -7,7 +7,7 @@ Project 1 - Heuristic Search
 Open
 ----
 
-Open `build/index.html` to see it in action.
+After building, open `build/index.html` and click one of the buttons to see it in action.
 
 
 Project structure
@@ -50,4 +50,4 @@ Building
 --------
 
     npm i
-    gulp dist
+    gulp build
